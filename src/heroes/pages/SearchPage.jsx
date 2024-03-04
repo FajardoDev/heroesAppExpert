@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-	useLocation,
-	useNavigate,
-} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import querystring from "query-string";
 import { Error, HeroCard } from "../components";
 import { useFormulario } from "../../hooks";
@@ -11,30 +8,25 @@ import { getHeroesByName } from "../helpers";
 export const SearchPage = () => {
 	const [error, setError] = useState(false);
 
-	// Para apuntar a otra pantalla para hacer la busqueda este ves vamos apuntar a la misma
+	// Para apuntar a otra pantalla para hacer la busqueda esta ves vamos apuntar a la misma
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const { q = "" } = querystring.parse(
-		location.search,
-	);
+	const { q = "" } = querystring.parse(location.search);
 	// console.log("query: ", query); era query desestructure por q = '' si no viene el q va hacer un '' vacío
 	// console.log(location); yarn add query-string
 
 	const heroes = getHeroesByName(q); // Aquí está el array completo
 
-	const { searchText, onInputChange, onResetForm } =
-		useFormulario({
-			searchText: q,
-		});
+	const { searchText, onInputChange, onResetForm } = useFormulario({
+		searchText: q,
+	});
 
 	const onHandleSearchSubmit = (e) => {
 		e.preventDefault();
 
 		if (searchText.trim().length <= 1) {
-			setError(
-				"Agregue otros parametros de busqueda...",
-			);
+			setError("Agregue otros parametros de busqueda...");
 			return;
 		}
 		console.log({ searchText });
@@ -50,11 +42,7 @@ export const SearchPage = () => {
 			<hr />
 			<div className="grid md:grid-cols-[400px_minmax(600px,_1fr)_100px] gap-6">
 				<div className="mt-4 space-y-2">
-					{error ? (
-						<Error>{error}</Error>
-					) : (
-						<h4 className="text-xl">Searching</h4>
-					)}
+					{error ? <Error>{error}</Error> : <h4 className="text-xl">Searching</h4>}
 
 					<form onSubmit={onHandleSearchSubmit}>
 						<label className="relative block max-w-full">
@@ -70,9 +58,7 @@ export const SearchPage = () => {
 							>
 								<i
 									className={`fa-solid fa-magnifying-glass duration-200 text-[1.3rem] mt-1 ${
-										error
-											? "text-red-600/90"
-											: "text-sky-600/90 hover:text-yellow-400"
+										error ? "text-red-600/90" : "text-sky-600/90 hover:text-yellow-400"
 									} `}
 								></i>
 							</button>

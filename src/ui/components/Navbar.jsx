@@ -1,28 +1,28 @@
-import {
-	Bars3Icon,
-	XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Disclosure } from "@headlessui/react";
-import {
-	Link,
-	useLocation,
-	useNavigate,
-} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../auth";
 
 import imagen from "../../../assets/heroes/banco.jpg";
 import { MyModal } from "./MyModal";
 
-export const user = {
-	name: "Ariel Fajardo",
+const users = {
 	email: "arielfajardo@gmail.com",
 };
 
-const { name, email } = user;
+const { email } = users;
 
 export const Navbar = () => {
 	const navigate = useNavigate();
 
+	const {
+		user,
+		// logout
+	} = useContext(AuthContext);
+
 	// const onHandleLogin = () => {
+	// logout()
 	// 	navigate("/login", {
 	// 		replace: true,
 	// 	});
@@ -36,10 +36,7 @@ export const Navbar = () => {
 	return (
 		<>
 			<div className="min-h-full">
-				<Disclosure
-					as="nav"
-					className="bg-gray-950 py-1"
-				>
+				<Disclosure as="nav" className="bg-gray-950 py-1">
 					{({ open }) => (
 						<>
 							<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-6">
@@ -48,8 +45,7 @@ export const Navbar = () => {
 										<div className=" flex items-baseline ">
 											<Link
 												className={`${
-													pathname === "/" &&
-													"text-sky-200 font-bold"
+													pathname === "/" && "text-sky-200 font-bold"
 												} text-blue-500  transition-colors duration-300 mt-2 hover:text-white  hover:bg-slate-200/50 py-2 px-6 rounded-md`}
 												to="/"
 											>
@@ -62,8 +58,7 @@ export const Navbar = () => {
 
 												<Link
 													className={`${
-														pathname === "/marvel" &&
-														"text-sky-200 font-bold"
+														pathname === "/marvel" && "text-sky-200 font-bold"
 													} text-blue-500  transition-colors duration-300 mt-2 hover:text-white  hover:bg-slate-200/50 py-2 px-6 rounded-md`}
 													to="/marvel"
 												>
@@ -71,8 +66,7 @@ export const Navbar = () => {
 												</Link>
 												<Link
 													className={`${
-														pathname === "/dc" &&
-														"text-sky-200 font-bold"
+														pathname === "/dc" && "text-sky-200 font-bold"
 													} text-blue-500  transition-colors duration-300 mt-2 hover:text-white hover:bg-slate-200/50 py-2 px-6 rounded-md`}
 													to="/dc"
 												>
@@ -81,8 +75,7 @@ export const Navbar = () => {
 
 												<Link
 													className={`${
-														pathname === "/search" &&
-														"text-sky-200 font-bold"
+														pathname === "/search" && "text-sky-200 font-bold"
 													} text-blue-500  transition-colors duration-300 mt-2 hover:text-white hover:bg-slate-200/50 py-2 px-6 rounded-md `}
 													to="/search"
 												>
@@ -92,7 +85,7 @@ export const Navbar = () => {
 										</div>
 									</div>
 									<div className="flex space-x-2 font-semibold  invisible md:visible">
-										<span>{name}</span>
+										<span>{user?.name}</span>
 										<div className="bg-teal-500 rounded-lg">
 											<MyModal />
 										</div>
@@ -114,19 +107,11 @@ export const Navbar = () => {
 										{/* Mobile menu button */}
 										<Disclosure.Button className="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 mb-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-1 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-gray-800">
 											<span className="absolute -inset-0.5" />
-											<span className="sr-only">
-												Open main menu
-											</span>
+											<span className="sr-only">Open main menu</span>
 											{open ? (
-												<XMarkIcon
-													className="block h-6 w-6"
-													aria-hidden="true"
-												/>
+												<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
 											) : (
-												<Bars3Icon
-													className="block h-6 w-6"
-													aria-hidden="true"
-												/>
+												<Bars3Icon className="block h-6 w-6" aria-hidden="true" />
 											)}
 										</Disclosure.Button>
 									</div>
@@ -139,8 +124,7 @@ export const Navbar = () => {
 									<div className="flex flex-col ">
 										<Link
 											className={`${
-												pathname === "/marvel" &&
-												"text-sky-200 font-bold"
+												pathname === "/marvel" && "text-sky-200 font-bold"
 											} text-blue-500  transition-colors duration-300 mt-2 hover:text-white  hover:bg-slate-200/50 py-2 px-6 rounded-md`}
 											to="/marvel"
 										>
@@ -148,8 +132,7 @@ export const Navbar = () => {
 										</Link>
 										<Link
 											className={`${
-												pathname === "/dc" &&
-												"text-sky-200 font-bold"
+												pathname === "/dc" && "text-sky-200 font-bold"
 											} text-blue-500  transition-colors duration-300 mt-2 hover:text-white hover:bg-slate-200/50 py-2 px-6 rounded-md`}
 											to="/dc"
 										>
@@ -163,17 +146,13 @@ export const Navbar = () => {
 													<img
 														className="h-9 w-9 rounded-full"
 														src={imagen}
-														alt={name}
+														alt={user?.name}
 														title="Login"
 													/>
 												</button>
 												<div>
-													<span className="block text-base font-bold">
-														{name}
-													</span>
-													<span className="block text-sm">
-														{email}
-													</span>
+													<span className="block text-base font-bold">{user?.name}</span>
+													<span className="block text-sm">{email}</span>
 												</div>
 											</div>
 										</div>

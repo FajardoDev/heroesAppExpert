@@ -1,7 +1,4 @@
-import {
-	Dialog,
-	Transition,
-} from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { Formulario } from "./Formulario";
 
@@ -27,11 +24,7 @@ export const MyModal = () => {
 			</button>
 
 			<Transition appear show={isOpen} as={Fragment}>
-				<Dialog
-					as="div"
-					className="relative z-10"
-					onClose={closeModal}
-				>
+				<Dialog as="div" className="relative z-10" onClose={closeModal}>
 					<Transition.Child
 						as={Fragment}
 						enter="ease-out duration-300"
@@ -69,10 +62,10 @@ export const MyModal = () => {
 									<div className="mt-4 top-0 absolute right-2">
 										<button
 											type="button"
-											className="inline-flex justify-center rounded-md border border-transparent bg-red-400 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+											className="inline-flex justify-center rounded-md border border-transparent bg-red-400 px-3 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
 											onClick={closeModal}
 										>
-											Cerrar
+											<span className="material-symbols-outlined">close</span>
 										</button>
 									</div>
 								</Dialog.Panel>

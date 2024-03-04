@@ -1,8 +1,4 @@
-import {
-	Navigate,
-	useNavigate,
-	useParams,
-} from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useMemo } from "react";
 import { getHeroById } from "../helpers";
 
@@ -26,7 +22,7 @@ export const HeroPage = () => {
 				<button
 					onClick={() => navigate(-1)}
 					type="button"
-					class="border opa border-gray-400 text-base rounded-lg py-2 px-10 font-bold bg-gradient-to-r from-pink-600 from-10%
+					class="border opa border-gray-400 text-base rounded-lg py-2 px-10 font-bold bg-gradient-to-tr from-pink-600 from-10%
                     via-indigo-500 via-30% to-violet-600 to-90% text-white hover:bg-gradient-to-r hover:from-indigo-500
                     hover:from-10% hover:via-violet-600 hover:via-30% hover:to-pink-600 hover:to-90% transition-all hover:-translate-y-1 duration-300"
 				>
@@ -42,40 +38,24 @@ export const HeroPage = () => {
 
 					<div className="space-y-5 md:p-10 text-base order-last lg:order-first w-[85%] ">
 						<p>
-							<strong className="text-sky-600">
-								Alter ego:{" "}
-							</strong>
+							<strong className="text-sky-600">Alter ego: </strong>
 							{hero.alter_ego}
 						</p>
 						<p>
-							<strong className="text-sky-600">
-								{" "}
-								Publisher:{" "}
-							</strong>
+							<strong className="text-sky-600"> Publisher: </strong>
 							{hero.publisher}
 						</p>
 						<p>
-							<strong className="text-sky-600">
-								{" "}
-								First appearance:{" "}
-							</strong>
+							<strong className="text-sky-600"> First appearance: </strong>
 							{hero.first_appearance}
 						</p>
 
 						<p>
-							<strong className="text-sky-600">
-								{" "}
-								Trasfondo:{" "}
-							</strong>
-							{hero.trasfondo === undefined
-								? "Trabajando en ello"
-								: hero.trasfondo}
+							<strong className="text-sky-600"> Trasfondo: </strong>
+							{hero.trasfondo === undefined ? "Trabajando en ello" : hero.trasfondo}
 						</p>
 						<p>
-							<strong className="text-sky-600">
-								{" "}
-								Habilidades:{" "}
-							</strong>
+							<strong className="text-sky-600"> Habilidades: </strong>
 							{hero.habilidades}
 						</p>
 

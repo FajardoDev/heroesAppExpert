@@ -1,15 +1,6 @@
-import {
-	Navigate,
-	Route,
-	Routes,
-} from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Navbar } from "../../ui";
-import {
-	DcPage,
-	MarvelPage,
-	HeroPage,
-	SearchPage,
-} from "../pages";
+import { DcPage, MarvelPage, HeroPage, SearchPage } from "../pages";
 
 export const HeroesRoutes = () => {
 	return (
@@ -20,26 +11,14 @@ export const HeroesRoutes = () => {
 
 			<div className="container mx-auto">
 				<Routes>
-					<Route
-						path="/marvel"
-						element={<MarvelPage />}
-					/>
+					<Route path="/marvel" element={<MarvelPage />} />
 					<Route path="/dc" element={<DcPage />} />
 
 					{/* Search, hero by id */}
-					<Route
-						path="/search"
-						element={<SearchPage />}
-					/>
-					<Route
-						path="/hero/:id"
-						element={<HeroPage />}
-					/>
+					<Route path="/search" element={<SearchPage />} />
+					<Route path="/hero/:id" element={<HeroPage />} />
 
-					<Route
-						path="/"
-						element={<Navigate to="/marvel" />}
-					/>
+					<Route path="/" element={<Navigate to="/marvel" />} />
 				</Routes>
 			</div>
 		</>

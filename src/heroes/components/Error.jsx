@@ -1,6 +1,6 @@
 export const Error = ({ children }) => {
 	return (
-		<div className="text-red-500 max-w-full mx-auto">
+		<div className="text-red-500 max-w-md mx-auto">
 			<p className="border border-red-600 text-center font-bold py-2 text-xs rounded-full">
 				{children}
 			</p>

@@ -57,10 +57,7 @@ export const HeroCard = ({
 					>
 						{alter_ego}
 					</Typography>
-					<Typography
-						color="gray"
-						className="mb-8 font-normal text-sm"
-					>
+					<Typography color="gray" className="mb-8 font-normal text-sm">
 						{/* Para que los nombres no se repitan  */}
 						{/* {alter_ego !== characters && (
 							<p>{characters}</p>
@@ -72,17 +69,11 @@ export const HeroCard = ({
 							alter_ego={alter_ego}
 						/> */}
 					</Typography>
-					<Typography
-						color="gray"
-						className="mb-8 font-normal"
-					>
+					<Typography color="gray" className="mb-8 font-normal">
 						<small>{first_appearance}</small>
 					</Typography>
 
-					<Link
-						to={`/hero/${id}`}
-						className="inline-block"
-					>
+					<Link to={`/hero/${id}`} className="inline-block">
 						<Button
 							variant="text"
 							className="flex items-center gap-2 text-xs bg-slate-200 px-5 py-2 transition-all hover:-translate-y-1 duration-300 text-indigo-600"

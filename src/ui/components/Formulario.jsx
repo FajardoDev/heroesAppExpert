@@ -1,35 +1,25 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Error } from "../../heroes/components/Error";
+import { AuthContext } from "../../auth";
 
 export const Formulario = () => {
+	const { login } = useContext(AuthContext);
+
 	const [nombre, setNombre] = useState("");
 	const [apellido, setApellido] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [telefono, setTelefono] = useState("");
+	const [error, setError] = useState(false);
 
-	const [inputInteractuado, setInputInteractuado] =
-		useState(false);
+	const [inputInteractuado, setInputInteractuado] = useState(false);
+	const [inputInteractuadoAp, setInputInteractuadoAp] = useState(false);
+	const [inputInteractuadoEmail, setInputInteractuadoEmail] = useState(false);
+	const [inputInteractuadoClave, setInputInteractuadoClave] = useState(false);
+	const [inputInteractuadoTe, setInputInteractuadoTe] = useState(false);
 
-	const [
-		inputInteractuadoAp,
-		setInputInteractuadoAp,
-	] = useState(false);
-	const [
-		inputInteractuadoEmail,
-		setInputInteractuadoEmail,
-	] = useState(false);
-	const [
-		inputInteractuadoClave,
-		setInputInteractuadoClave,
-	] = useState(false);
-	const [
-		inputInteractuadoTe,
-		setInputInteractuadoTe,
-	] = useState(false);
-
-	const verificarCaracteres = (valor) =>
-		valor.trim().length > 0;
+	const verificarCaracteres = (valor) => valor.trim().length > 0;
 
 	const onNombreChange = ({ target }) => {
 		setNombre(target.value);
@@ -59,19 +49,15 @@ export const Formulario = () => {
 	const onHandleSubmit = (e) => {
 		e.preventDefault();
 
-		if (
-			[
-				nombre,
-				apellido,
-				email,
-				password,
-				telefono,
-			].includes("")
-		) {
-			// setError('Todos los campos son requeridos')
-			alert("Todos los campos son requeridos");
+		if ([nombre, apellido, email, password, telefono].includes("")) {
+			setError("Todos los campos son requeridos");
 			return;
 		}
+
+		//Todo:
+
+		login(nombre);
+
 		navigate("/login", {
 			replace: true,
 		});
@@ -80,7 +66,7 @@ export const Formulario = () => {
 	return (
 		<>
 			<h2 className="text-center text-xl font-extrabold text-indigo-500">
-				Registraté
+				{error ? <Error>{error}</Error> : "Registrate"}
 			</h2>
 
 			<form onSubmit={onHandleSubmit}>
